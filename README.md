@@ -1,66 +1,143 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel RESTful API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+a RESTful API using Laravel includes authentication, store database into database and manage external API
 
-## About Laravel
+## Table of Contents
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [API Endpoints](#api-endpoints)
+- [Testing](#testing)
+- [Screenshot](#screenshot)
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Before setting up the project, make sure your system meets the following requirements:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **PHP**: 8.2 or higher
+- **Laravel**: 10.x
+- **MySQL**:  5.7
+- **Composer**: PHP dependency manager
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Follow the steps below to set up the project on your local machine.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/Devajayantha/jb-api-test
+    ```
 
-## Laravel Sponsors
+2. **Navigate into the project directory**:
+    ```bash
+    cd jb-api-test
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3. **Install the required dependencies** using Composer:
+    ```bash
+    composer install
+    ```
 
-### Premium Partners
+4. **Copy the `.env.example` file to `.env`**:
+    ```bash
+    cp .env.example .env
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+5. **Generate the application key**:
+    ```bash
+    php artisan key:generate
+    ```
 
-## Contributing
+6. **Set up the database**:
+    - Configure your database connection in the `.env` file.
+    - Run migrations to create the necessary tables:
+      ```bash
+      php artisan migrate
+      ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. **Set up your OpenWeather API key in `.env`**:
+    ```env
+    WEATHER_API_KEY=your-api-key-here
+    ```
 
-## Code of Conduct
+8. **Start the local development server**:
+    ```bash
+    php artisan serve
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Your Laravel application will be running at `http://localhost:8000`.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Setting Up Queues:
+For background jobs (e.g., fetching weather data periodically), run the queue worker:
 
-## License
+```bash
+php artisan queue:work
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+It can also be run alongside this command if you want to run the job manually.
+
+```bash
+php artisan app:dispatch-weather-scheduler
+```
+
+## API Endpoints
+Currently, I am utilizing the version specified in the API URL. This approach allows for better version management.
+
+The following API endpoints are available:
+
+| **Method** | **Endpoint**                          | **Description**                                           | **Parameters**                                     |
+|------------|---------------------------------------|-----------------------------------------------------------|---------------------------------------------------|
+| `POST`     | `/api/v1/register`                   | Register a new user for the app.                          | `name` (string), `email` (string), `password` (string) |
+| `POST`     | `/api/v1/login`                      | Log in a user and return an authentication token.         | `email` (string), `password` (string)             |
+| `GET`      | `/api/v1/users/user`                 | Get details of the authenticated user.                    | Authorization header with `Bearer token`          |
+| `GET`      | `/api/v1/users`                      | List all users.                                           | `limit` (int), `search` (string, optional)        |
+| `POST`     | `/api/v1/logout`                     | Log out the user and invalidate the token.                | Authorization header with `Bearer token`          |
+| `POST`     | `/api/v1/posts`                      | Create a new post for an authenticated user.              | `title` (string), `content` (string), `is_active` (boolean) |
+| `PATCH`    | `/api/v1/posts/{post}`                | Update an existing post by ID.                            | `title` (string), `content` (string), `is_active` (boolean) |
+| `GET`      | `/api/v1/posts/{post}`                | View the details of a specific post.                      | `post` (int) - Post ID                            |
+| `DELETE`   | `/api/v1/posts/{post}`                | Delete a post by ID.                                      | `post` (int) - Post ID                            |
+| `GET`      | `/api/v1/posts`                       | List posts owned by the authenticated user.               | `limit` (int), `search` (string, optional)        |
+| `GET`      | `/api/v1/current-weather`             | Get the current weather details.                          | None                                              |
+
+---
+
+#### Example Usage:
+
+1. **Register a New User**:
+   To register a new user, make a `POST` request to `/api/v1/register`.
+
+   Example:
+   ```bash
+   curl -X POST http://localhost:8000/api/v1/register \
+     -d "name=John Doe&email=john@example.com&password=password123"
+
+## Testing
+
+This project uses **PHPUnit** for testing.
+
+To run all the tests, use the following command:
+
+```bash
+php artisan test
+```
+## Screenshot
+
+Here’s some screenshoot from my work.
+
+![Screenshot](https://devajayantha.github.io/assets/image-jb/image_4.png)
+
+![Screenshot](https://devajayantha.github.io/assets/image-jb/image_1.png)
+
+![Screenshot](https://devajayantha.github.io/assets/image-jb/image_2.png)
+
+![Screenshot](https://devajayantha.github.io/assets/image-jb/image_3.png)
+
+![Screenshot](https://devajayantha.github.io/assets/image-jb/image_5.png)
+
+![Screenshot](https://devajayantha.github.io/assets/image-jb/image_6.png)
+
+### Thank You
