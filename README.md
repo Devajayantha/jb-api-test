@@ -58,6 +58,9 @@ Follow the steps below to set up the project on your local machine.
       ```
 
 7. **Set up your OpenWeather API key in `.env`**:
+
+Currently, I am using the **openweathermap** API to fetch weather data. You can get your own API key by signing up on their website  [OpenWeather API](https://openweathermap.org/api). More details [WEATHER_API.md](./WEATHER_API.md)
+
     ```env
     WEATHER_API_KEY=your-api-key-here
     ```
