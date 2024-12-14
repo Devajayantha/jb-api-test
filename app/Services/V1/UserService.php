@@ -2,6 +2,7 @@
 
 namespace App\Services\V1;
 
+use App\Jobs\RegisteredEmail;
 use App\Models\User;
 use App\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -33,14 +34,22 @@ class UserService
      */
     public function register(array $data): User
     {
-        return DB::transaction(function () use ($data) {
-            /** @var \App\Models\User $user */
+        DB::beginTransaction();
+        try {
             $user = User::query()->create($data);
 
             $user->access_token = $user->createToken($user->id)->plainTextToken;
 
-            return $user;
-        });
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            throw $th;
+        }
+
+        RegisteredEmail::dispatch($user);
+
+        return $user;
     }
 
     /**
