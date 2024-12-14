@@ -18,7 +18,7 @@ class UserControllerTest extends TestCase
         $payload = [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => fake()->password(),
+            'password' => fake()->password(10),
         ];
 
         $response = $this
