@@ -1,0 +1,1573 @@
+openapi: 3.0.3
+info:
+  title: JuiceBox Test Api
+  description: |-
+    Juicebox API V1 Documentation
+
+    Postman : ([doc-v1-postman](http://127.0.0.1:8000/doc-v1-postman))
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: '{{base_url}}'
+paths:
+  /api/v1/users/{user}:
+    get:
+      tags:
+        - User
+      summary: User Detail
+      description: User Detail
+      operationId: userDetail
+      responses:
+        '200':
+          description: Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 01:15:32 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '58'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      created_at:
+                        type: string
+                        example: '2024-12-14T00:53:58.000000Z'
+                      email:
+                        type: string
+                        example: devajayantha870@gmail.com
+                      email_verified_at:
+                        type: string
+                        example: '2024-12-14T00:53:58.000000Z'
+                      id:
+                        type: number
+                        example: 3
+                      name:
+                        type: string
+                        example: Deva Jayantha
+                      updated_at:
+                        type: string
+                        example: '2024-12-14T00:53:58.000000Z'
+              examples:
+                Response 200:
+                  value:
+                    data:
+                      created_at: '2024-12-14T00:53:58.000000Z'
+                      email: devajayantha870@gmail.com
+                      email_verified_at: '2024-12-14T00:53:58.000000Z'
+                      id: 3
+                      name: Deva Jayantha
+                      updated_at: '2024-12-14T00:53:58.000000Z'
+      security:
+        - bearerAuth: []
+    parameters:
+      - name: user
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '3'
+  /api/v1/login:
+    post:
+      tags:
+        - User
+      summary: Login User
+      description: Login User
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: devajayantha870@gmail.com
+                password:
+                  type: string
+                  example: password
+            examples:
+              Login User:
+                value:
+                  email: devajayantha870@gmail.com
+                  password: password
+      responses:
+        '200':
+          description: Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 00:50:27 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '56'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      access_token:
+                        type: string
+                        example: 2|fwfvnbQVAZgNFbcA8w8GF7PpJX0fxg6Op3cpfazm5bb3f50f
+                      created_at:
+                        type: string
+                        example: '2024-12-13T15:46:22.000000Z'
+                      email:
+                        type: string
+                        example: devajayantha870@gmail.com
+                      email_verified_at:
+                        nullable: true
+                        example: null
+                      id:
+                        type: number
+                        example: 1
+                      name:
+                        type: string
+                        example: Deva Jayantha
+                      updated_at:
+                        type: string
+                        example: '2024-12-13T15:46:22.000000Z'
+              examples:
+                Response 200:
+                  value:
+                    data:
+                      access_token: 2|fwfvnbQVAZgNFbcA8w8GF7PpJX0fxg6Op3cpfazm5bb3f50f
+                      created_at: '2024-12-13T15:46:22.000000Z'
+                      email: devajayantha870@gmail.com
+                      email_verified_at: null
+                      id: 1
+                      name: Deva Jayantha
+                      updated_at: '2024-12-13T15:46:22.000000Z'
+        '401':
+          description: Response 401
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 00:49:31 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: The provided credentials are incorrect.
+                        example:
+                          - The provided credentials are incorrect.
+                  message:
+                    type: string
+                    example: The provided credentials are incorrect.
+              examples:
+                Response 401:
+                  value:
+                    errors:
+                      email:
+                        - The provided credentials are incorrect.
+                    message: The provided credentials are incorrect.
+        '422':
+          description: Response 422
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 00:49:56 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '58'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: The email field must be a valid email address.
+                        example:
+                          - The email field must be a valid email address.
+                  message:
+                    type: string
+                    example: The email field must be a valid email address.
+              examples:
+                Response 422:
+                  value:
+                    errors:
+                      email:
+                        - The email field must be a valid email address.
+                    message: The email field must be a valid email address.
+        '429':
+          description: Response 429
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 00:46:19 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '54'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: >-
+                            Too many login attempts. Please try again in 55
+                            seconds.
+                        example:
+                          - >-
+                            Too many login attempts. Please try again in 55
+                            seconds.
+                  message:
+                    type: string
+                    example: Too many login attempts. Please try again in 55 seconds.
+              examples:
+                Response 429:
+                  value:
+                    errors:
+                      email:
+                        - >-
+                          Too many login attempts. Please try again in 55
+                          seconds.
+                    message: Too many login attempts. Please try again in 55 seconds.
+  /api/v1/register:
+    post:
+      tags:
+        - User
+      summary: Register User
+      description: Register User
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: devajayantha870@gmail.com
+                name:
+                  type: string
+                  example: Deva Jayantha
+                password:
+                  type: string
+                  example: password
+            examples:
+              Register User:
+                value:
+                  email: devajayantha870@gmail.com
+                  name: Deva Jayantha
+                  password: password
+      responses:
+        '201':
+          description: Response 201 (Created)
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 13 Dec 2024 15:46:22 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '58'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      access_token:
+                        type: string
+                        example: 1|mI76Sid9CwnEKZ9zWuib5Lu6nPgHK5xeV8T8uhLtf280e976
+                      created_at:
+                        type: string
+                        example: '2024-12-14T00:53:58.000000Z'
+                      email:
+                        type: string
+                        example: devajayantha870@gmail.com
+                      email_verified_at:
+                        type: string
+                        example: '2024-12-14T00:53:58.000000Z'
+                      id:
+                        type: number
+                        example: 3
+                      name:
+                        type: string
+                        example: Deva Jayantha
+                      updated_at:
+                        type: string
+                        example: '2024-12-14T00:53:58.000000Z'
+              examples:
+                Response 201 (Created):
+                  value:
+                    data:
+                      access_token: 1|mI76Sid9CwnEKZ9zWuib5Lu6nPgHK5xeV8T8uhLtf280e976
+                      created_at: '2024-12-14T00:53:58.000000Z'
+                      email: devajayantha870@gmail.com
+                      email_verified_at: '2024-12-14T00:53:58.000000Z'
+                      id: 3
+                      name: Deva Jayantha
+                      updated_at: '2024-12-14T00:53:58.000000Z'
+        '422':
+          description: Response 422
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Fri, 13 Dec 2024 15:44:14 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '58'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: The email field is required.
+                        example:
+                          - The email field is required.
+                      name:
+                        type: array
+                        items:
+                          type: string
+                          example: The name field is required.
+                        example:
+                          - The name field is required.
+                      password:
+                        type: array
+                        items:
+                          type: string
+                          example: The password field is required.
+                        example:
+                          - The password field is required.
+                  message:
+                    type: string
+                    example: The name field is required. (and 2 more errors)
+              examples:
+                Response 422:
+                  value:
+                    errors:
+                      email:
+                        - The email field is required.
+                      name:
+                        - The name field is required.
+                      password:
+                        - The password field is required.
+                    message: The name field is required. (and 2 more errors)
+  /api/v1/logout:
+    post:
+      tags:
+        - User
+      summary: User Logout
+      description: User Logout
+      operationId: userLogout
+      responses:
+        '200':
+          description: Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 01:21:48 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                    example: []
+              examples:
+                Response 200:
+                  value:
+                    data: []
+      security:
+        - bearerAuth: []
+  /api/v1/users:
+    get:
+      tags:
+        - User
+      summary: List User
+      description: List User
+      operationId: listUser
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
+            example: '10'
+          description: nullable
+      responses:
+        '200':
+          description: Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 04:28:03 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        created_at:
+                          type: string
+                          example: '2024-12-14T03:47:29.000000Z'
+                        email:
+                          type: string
+                          example: devajayantha870@gmail.com
+                        id:
+                          type: number
+                          example: 1
+                        name:
+                          type: string
+                          example: Deva Jayantha
+                    example:
+                      - created_at: '2024-12-14T03:47:29.000000Z'
+                        email: devajayantha870@gmail.com
+                        id: 1
+                        name: Deva Jayantha
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: http://127.0.0.1:8000/api/v1/users?page=1
+                      last:
+                        type: string
+                        example: http://127.0.0.1:8000/api/v1/users?page=1
+                      next:
+                        nullable: true
+                        example: null
+                      prev:
+                        nullable: true
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: number
+                        example: 1
+                      from:
+                        type: number
+                        example: 1
+                      last_page:
+                        type: number
+                        example: 1
+                      links:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            active:
+                              type: boolean
+                              example: false
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            url:
+                              type: string
+                              nullable: true
+                              example: null
+                        example:
+                          - active: false
+                            label: '&laquo; Previous'
+                            url: null
+                          - active: true
+                            label: '1'
+                            url: http://127.0.0.1:8000/api/v1/users?page=1
+                          - active: false
+                            label: Next &raquo;
+                            url: null
+                      path:
+                        type: string
+                        example: http://127.0.0.1:8000/api/v1/users
+                      per_page:
+                        type: number
+                        example: 10
+                      to:
+                        type: number
+                        example: 1
+                      total:
+                        type: number
+                        example: 1
+              examples:
+                Response 200:
+                  value:
+                    data:
+                      - created_at: '2024-12-14T03:47:29.000000Z'
+                        email: devajayantha870@gmail.com
+                        id: 1
+                        name: Deva Jayantha
+                    links:
+                      first: http://127.0.0.1:8000/api/v1/users?page=1
+                      last: http://127.0.0.1:8000/api/v1/users?page=1
+                      next: null
+                      prev: null
+                    meta:
+                      current_page: 1
+                      from: 1
+                      last_page: 1
+                      links:
+                        - active: false
+                          label: '&laquo; Previous'
+                          url: null
+                        - active: true
+                          label: '1'
+                          url: http://127.0.0.1:8000/api/v1/users?page=1
+                        - active: false
+                          label: Next &raquo;
+                          url: null
+                      path: http://127.0.0.1:8000/api/v1/users
+                      per_page: 10
+                      to: 1
+                      total: 1
+  /api/v1/posts:
+    get:
+      tags:
+        - Post
+      summary: List Post
+      description: List Post
+      operationId: listPost
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+            example: lorensss
+          description: nullable
+        - name: limit
+          in: query
+          schema:
+            type: string
+            example: '10'
+          description: nullable
+      responses:
+        '200':
+          description: Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 04:01:16 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        content:
+                          type: string
+                          example: >-
+                            Lorem Ipsum is simply dummy text of the printing and
+                            typesetting industry. Lorem Ipsum has been the
+                            industry's standard dummy text ever since the 1500s
+                        created_at:
+                          type: string
+                          example: '2024-12-14T03:50:43.000000Z'
+                        id:
+                          type: number
+                          example: 1
+                        title:
+                          type: string
+                          example: Lorensum
+                        user_name:
+                          type: string
+                          example: Deva Jayantha
+                    example:
+                      - content: >-
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the
+                          industry's standard dummy text ever since the 1500s
+                        created_at: '2024-12-14T03:50:43.000000Z'
+                        id: 1
+                        title: Lorensum
+                        user_name: Deva Jayantha
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: http://127.0.0.1:8000/api/v1/posts?page=1
+                      last:
+                        type: string
+                        example: http://127.0.0.1:8000/api/v1/posts?page=1
+                      next:
+                        nullable: true
+                        example: null
+                      prev:
+                        nullable: true
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: number
+                        example: 1
+                      from:
+                        type: number
+                        example: 1
+                      last_page:
+                        type: number
+                        example: 1
+                      links:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            active:
+                              type: boolean
+                              example: false
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            url:
+                              type: string
+                              nullable: true
+                              example: null
+                        example:
+                          - active: false
+                            label: '&laquo; Previous'
+                            url: null
+                          - active: true
+                            label: '1'
+                            url: http://127.0.0.1:8000/api/v1/posts?page=1
+                          - active: false
+                            label: Next &raquo;
+                            url: null
+                      path:
+                        type: string
+                        example: http://127.0.0.1:8000/api/v1/posts
+                      per_page:
+                        type: number
+                        example: 10
+                      to:
+                        type: number
+                        example: 1
+                      total:
+                        type: number
+                        example: 1
+              examples:
+                Response 200:
+                  value:
+                    data:
+                      - content: >-
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the
+                          industry's standard dummy text ever since the 1500s
+                        created_at: '2024-12-14T03:50:43.000000Z'
+                        id: 1
+                        title: Lorensum
+                        user_name: Deva Jayantha
+                    links:
+                      first: http://127.0.0.1:8000/api/v1/posts?page=1
+                      last: http://127.0.0.1:8000/api/v1/posts?page=1
+                      next: null
+                      prev: null
+                    meta:
+                      current_page: 1
+                      from: 1
+                      last_page: 1
+                      links:
+                        - active: false
+                          label: '&laquo; Previous'
+                          url: null
+                        - active: true
+                          label: '1'
+                          url: http://127.0.0.1:8000/api/v1/posts?page=1
+                        - active: false
+                          label: Next &raquo;
+                          url: null
+                      path: http://127.0.0.1:8000/api/v1/posts
+                      per_page: 10
+                      to: 1
+                      total: 1
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - Post
+      summary: Create Post
+      description: Create Post
+      operationId: createPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: >-
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s
+                title:
+                  type: string
+                  example: Lorensum ipsum
+            examples:
+              Create Post:
+                value:
+                  content: >-
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s
+                  title: Lorensum ipsum
+      responses:
+        '200':
+          description: Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 03:52:00 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                    example: []
+              examples:
+                Response 200:
+                  value:
+                    data: []
+        '422':
+          description: Response 422
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 03:51:36 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      title:
+                        type: array
+                        items:
+                          type: string
+                          example: The title field must be at least 2 characters.
+                        example:
+                          - The title field must be at least 2 characters.
+                  message:
+                    type: string
+                    example: The title field must be at least 2 characters.
+              examples:
+                Response 422:
+                  value:
+                    errors:
+                      title:
+                        - The title field must be at least 2 characters.
+                    message: The title field must be at least 2 characters.
+      security:
+        - bearerAuth: []
+  /api/v1/posts/{post}:
+    get:
+      tags:
+        - Post
+      summary: Post Detail
+      description: Post Detail
+      operationId: postDetail
+      responses:
+        '200':
+          description: Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 04:09:15 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '58'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      content:
+                        type: string
+                        example: >-
+                          Lorem Ipsum is simply dummy text of the printing and
+                          typesetting industry. Lorem Ipsum has been the
+                          industry's standard dummy text ever since the 1500s
+                      created_at:
+                        type: string
+                        example: '2024-12-14T03:50:43.000000Z'
+                      id:
+                        type: number
+                        example: 1
+                      title:
+                        type: string
+                        example: Lorensum ipsum
+                      user_name:
+                        type: string
+                        example: Deva Jayantha
+              examples:
+                Response 200:
+                  value:
+                    data:
+                      content: >-
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever since the 1500s
+                      created_at: '2024-12-14T03:50:43.000000Z'
+                      id: 1
+                      title: Lorensum ipsum
+                      user_name: Deva Jayantha
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - Post
+      summary: Post Delete
+      description: Post Delete
+      operationId: postDelete
+      responses:
+        '200':
+          description: Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 04:10:02 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                    example: []
+              examples:
+                Response 200:
+                  value:
+                    data: []
+      security:
+        - bearerAuth: []
+    patch:
+      tags:
+        - Post
+      summary: Edit Post
+      description: Edit Post
+      operationId: editPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: >-
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s
+                is_active:
+                  type: boolean
+                  example: true
+                title:
+                  type: string
+                  example: Lorensum ipsum
+            examples:
+              Edit Post:
+                value:
+                  content: >-
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s
+                  is_active: true
+                  title: Lorensum ipsum
+      responses:
+        '200':
+          description: Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 04:03:55 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '57'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                    example: []
+              examples:
+                Response 200:
+                  value:
+                    data: []
+      security:
+        - bearerAuth: []
+    parameters:
+      - name: post
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '1'
+  /api/v1/current-weather:
+    get:
+      tags:
+        - Weather
+      summary: Current Weather
+      description: Current Weather
+      operationId: currentWeather
+      responses:
+        '200':
+          description: Response 200 / Response 200
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Cache-Control:
+              schema:
+                type: string
+                example: no-cache, private
+            Connection:
+              schema:
+                type: string
+                example: close
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Dec 2024 08:51:03 GMT
+            Host:
+              schema:
+                type: string
+                example: 127.0.0.1:8000
+            X-Powered-By:
+              schema:
+                type: string
+                example: PHP/8.2.23
+            X-RateLimit-Limit:
+              schema:
+                type: string
+                example: '60'
+            X-RateLimit-Remaining:
+              schema:
+                type: string
+                example: '59'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      base:
+                        type: string
+                        example: stations
+                      clouds:
+                        type: object
+                        properties:
+                          all:
+                            type: number
+                            example: 0
+                      cod:
+                        type: number
+                        example: 200
+                      coord:
+                        type: object
+                        properties:
+                          lat:
+                            type: number
+                            example: -31.9535
+                          lon:
+                            type: number
+                            example: 115.857
+                      created_at:
+                        type: string
+                        example: '2024-12-14 07:34:54'
+                      dt:
+                        type: number
+                        example: 1734161693
+                      id:
+                        type: number
+                        example: 2066756
+                      main:
+                        type: object
+                        properties:
+                          feels_like:
+                            type: number
+                            example: 299.6
+                          grnd_level:
+                            type: number
+                            example: 1003
+                          humidity:
+                            type: number
+                            example: 60
+                          pressure:
+                            type: number
+                            example: 1005
+                          sea_level:
+                            type: number
+                            example: 1005
+                          temp:
+                            type: number
+                            example: 299.6
+                          temp_max:
+                            type: number
+                            example: 300.85
+                          temp_min:
+                            type: number
+                            example: 298.12
+                      name:
+                        type: string
+                        example: Maylands
+                      rain:
+                        nullable: true
+                        example: null
+                      snow:
+                        nullable: true
+                        example: null
+                      sys:
+                        type: object
+                        properties:
+                          country:
+                            type: string
+                            example: AU
+                          id:
+                            type: number
+                            example: 63154
+                          sunrise:
+                            type: number
+                            example: 1734123888
+                          sunset:
+                            type: number
+                            example: 1734175069
+                          type:
+                            type: number
+                            example: 2
+                      timestamp:
+                        type: string
+                        example: '2024-12-14 07:34:54'
+                      timezone:
+                        type: number
+                        example: 28800
+                      visibility:
+                        type: number
+                        example: 10000
+                      weather:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            description:
+                              type: string
+                              example: clear sky
+                            icon:
+                              type: string
+                              example: 01d
+                            id:
+                              type: number
+                              example: 800
+                            main:
+                              type: string
+                              example: Clear
+                        example:
+                          - description: clear sky
+                            icon: 01d
+                            id: 800
+                            main: Clear
+                      wind:
+                        type: object
+                        properties:
+                          deg:
+                            type: number
+                            example: 250
+                          speed:
+                            type: number
+                            example: 6.17
+              examples:
+                Response 200:
+                  value:
+                    data:
+                      clouds:
+                        all: 0
+                      created_at: '2024-12-14 07:34:54'
+                      main:
+                        feels_like: 299.6
+                        grnd_level: 1003
+                        humidity: 60
+                        pressure: 1005
+                        sea_level: 1005
+                        temp: 299.6
+                        temp_max: 300.85
+                        temp_min: 298.12
+                      rain: null
+                      snow: null
+                      weather:
+                        - description: clear sky
+                          icon: 01d
+                          id: 800
+                          main: Clear
+                      wind:
+                        deg: 250
+                        speed: 6.17
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: User
+  - name: Post
+  - name: Weather
