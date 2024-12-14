@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\RegisterRequest;
+use App\Http\Resources\Api\V1\GuestUserResource;
 use App\Http\Resources\Api\V1\UserResource;
 use App\Models\User;
 use App\Services\V1\LoginService;
@@ -23,6 +24,24 @@ class UserController extends Controller
       protected UserService $service,
       protected LoginService $loginService
     ){}
+
+    /**
+     * This method uses to get the list of users with guest mode.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function index(Request $request)
+    {
+        $request->validate([
+            'limit' => ['sometimes', 'nullable', 'integer', 'min:1'],
+            'search' => ['sometimes', 'nullable', 'string', 'min:2'],
+        ]);
+
+        $users = $this->service->list($request);
+
+        return GuestUserResource::collection($users);
+    }
 
     /**
      * Register a new user.

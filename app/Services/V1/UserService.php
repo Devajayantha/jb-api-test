@@ -4,10 +4,27 @@ namespace App\Services\V1;
 
 use App\Models\User;
 use App\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class UserService
 {
+    /**
+     * Get the list of users.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function list(Request $request): \Illuminate\Pagination\LengthAwarePaginator
+    {
+        $users = User::query()
+            ->filter($request)
+            ->latest()
+            ->paginate($request->input('limit', 10));
+
+        return $users;
+    }
+
     /**
      * Register a new user.
      *

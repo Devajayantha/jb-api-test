@@ -11,7 +11,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,
-        Concerns\User\HasAttribute;
+        Concerns\User\HasAttribute,
+        Concerns\User\HasQueryScope;
 
 
     /**
