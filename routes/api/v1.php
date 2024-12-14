@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\WeatherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,7 @@ Route::post('register', [UserController::class, 'register'])->name('register');
 Route::post('login', [UserController::class, 'login'])->name('login');
 
 Route::get('users', [UserController::class, 'index'])->name('users.index');
+Route::get('current-weather', WeatherController::class)->name('current-weather');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
