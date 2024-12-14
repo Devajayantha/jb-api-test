@@ -61,9 +61,7 @@ Follow the steps below to set up the project on your local machine.
 
 Currently, I am using the **openweathermap** API to fetch weather data. You can get your own API key by signing up on their website  [OpenWeather API](https://openweathermap.org/api). More details [WEATHER_API.md](./WEATHER_API.md)
 
-    ```env
-    WEATHER_API_KEY=your-api-key-here
-    ```
+    OPENWEATHER_API_KEY=your-api-key-here
 
 8. **Start the local development server**:
     ```bash
@@ -142,5 +140,7 @@ Here’s some screenshoot from my work.
 ![Screenshot](https://devajayantha.github.io/assets/image-jb/image_5.png)
 
 ![Screenshot](https://devajayantha.github.io/assets/image-jb/image_6.png)
+
+![Screenshot](https://devajayantha.github.io/assets/image-jb/image_7.png)
 
 ### Thank You
